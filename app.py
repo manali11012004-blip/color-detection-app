@@ -4,14 +4,14 @@ import pandas as pd
 from PIL import Image
 from streamlit_image_coordinates import streamlit_image_coordinates
 
-# -------------------- LOAD CSV --------------------
+
 csv = pd.read_csv(
     'colors.csv',
     names=["color", "color_name", "hex", "R", "G", "B"],
     header=None
 )
 
-# -------------------- COLOR FUNCTION --------------------
+
 def getColorName(R, G, B):
     minimum = 10000
     cname = "Unknown"
@@ -27,7 +27,7 @@ def getColorName(R, G, B):
 
     return cname
 
-# -------------------- UI --------------------
+
 st.title("🎨 Color Detection App (Click on Image)")
 
 uploaded_file = st.file_uploader(
@@ -35,7 +35,7 @@ uploaded_file = st.file_uploader(
 )
 
 if uploaded_file is not None:
-    image = Image.open(uploaded_file).convert("RGB")  # ✅ ensure RGB
+    image = Image.open(uploaded_file).convert("RGB")  
     img = np.array(image)
 
     st.write("👉 Click anywhere on the image")
@@ -47,19 +47,19 @@ if uploaded_file is not None:
         x = value["x"]
         y = value["y"]
 
-        # ✅ FIX: Correct RGB order (PIL uses RGB)
+       
         r, g, b = img[y, x]
         r, g, b = int(r), int(g), int(b)
 
-        # Get color name
+
         color_name = getColorName(r, g, b)
 
-        # -------------------- OUTPUT --------------------
+      
         st.write(f"### 🎯 Color: {color_name}")
         st.write(f"📍 Coordinates: ({x}, {y})")
         st.write(f"RGB: ({r}, {g}, {b})")
 
-        # Color preview bar
+ 
         st.markdown(
             f"""
             <div style="
