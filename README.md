@@ -45,7 +45,7 @@ color-detection-app/
 ├── README.md
 │
 └── images/
-    ├── demo_input.jpg
+    ├── colorpic.jpg
     ├── output1.png
     ├── output2.png
 ```
